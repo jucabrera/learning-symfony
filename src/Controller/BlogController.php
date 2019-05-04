@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends AbstractController
@@ -12,9 +13,11 @@ class BlogController extends AbstractController
      *
      * @Route("/blog/{page}", name="blog_list", requirements={"page"="\d+"})
      */
-    public function list($page=1)
+    public function list($page=1, Request $request)
     {
-        echo $page;
+        echo "Page from route {$page}<br>";
+        echo "Page from query parameter ".$request->query->get('search');
+        echo "<br>";
         die(__METHOD__);
     }
 
