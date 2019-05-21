@@ -30,15 +30,8 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/{id}", name="product_show")
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);;
-
-        if(!$product)
-        {
-            throw $this->createNotFoundException("No product found for id {$id}");
-        }
-
         return $this->render("product/show.html.twig",['product'=> $product]);
     }
 
@@ -56,5 +49,16 @@ class ProductController extends AbstractController
         }
 
         return $this->render("product/list.html.twig", ['products' => $products]);
+    }
+
+    /**
+     * @Route("/product/edit/{id}", name="product_edit")
+     */
+    public function update(Product $product)
+    {
+        $product->setName('New product name');
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('product_show', ['id' => $product->getId()]);
     }
 }
