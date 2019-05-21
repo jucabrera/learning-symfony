@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Product!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Product! ✅</h1>
+
+    "Check out this great product {{ product.name }}"
+    <ul>
+        <li>Description: {{ product.description }}</li>
+        <li>Price: {{ product.price }}</li>
+    </ul>
+</div>
+{% endblock %}
